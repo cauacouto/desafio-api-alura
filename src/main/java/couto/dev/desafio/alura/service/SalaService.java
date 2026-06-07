@@ -28,4 +28,12 @@ public class SalaService {
         return salaMapper.toDto(salvar);
     }
 
+
+    public void inativarSala(Integer id){
+        Sala sala = salaRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("sala não encontrada"));
+        sala.setAtiva(false);
+        salaRepository.save(sala);
+    }
+
 }
