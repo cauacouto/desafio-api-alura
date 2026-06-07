@@ -1,6 +1,6 @@
 package couto.dev.desafio.alura.domin;
 
-import couto.dev.desafio.alura.Enum.status;
+import couto.dev.desafio.alura.Enum.statusReserva;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,13 +20,15 @@ public class Reserva implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer id;
-    private LocalDateTime dataIncio;
+    private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
     @Enumerated(value = EnumType.STRING)
-    private status status;
+    private statusReserva status;
     @ManyToOne
+    @JoinColumn(name = "usuario_Id")
     private Usuario usuario;
     @ManyToOne
+    @JoinColumn(name = "sala_Id")
     private Sala sala;
 
 
