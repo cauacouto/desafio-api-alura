@@ -1,5 +1,6 @@
 package couto.dev.desafio.alura.domin;
 
+import couto.dev.desafio.alura.Enum.StatusSala;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,9 @@ public class Sala implements Serializable {
     private String nomeSala;
     private int capacidade;
     private boolean ativa;
-    @OneToMany
+    @Enumerated(EnumType.STRING)
+    private StatusSala statusSala;
+    @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Reserva> reserva;
 
 }
