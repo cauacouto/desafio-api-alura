@@ -2,11 +2,7 @@ package couto.dev.desafio.alura.Mapper;
 
 import couto.dev.desafio.alura.Dto.ReservaRequestDto;
 import couto.dev.desafio.alura.Dto.ReservaResponseDto;
-import couto.dev.desafio.alura.Dto.SalaRequestDto;
-import couto.dev.desafio.alura.Dto.SalaResponseDto;
 import couto.dev.desafio.alura.domin.Reserva;
-import couto.dev.desafio.alura.domin.Sala;
-import org.mapstruct.MapMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
