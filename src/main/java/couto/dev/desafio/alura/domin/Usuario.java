@@ -21,6 +21,6 @@ public class Usuario implements Serializable {
 
     private UUID id;
     private String nome;
-    @OneToMany
+    @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Reserva> reserva;
 }
