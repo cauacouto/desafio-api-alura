@@ -1,6 +1,6 @@
 package couto.dev.desafio.alura.Enum;
 
-public enum status {
+public enum statusReserva {
 
     ATIVO,
     CANCELADA
