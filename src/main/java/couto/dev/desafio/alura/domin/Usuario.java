@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "usuario")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,6 +21,7 @@ public class Usuario implements Serializable {
 
     private UUID id;
     private String nome;
-    @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL,orphanRemoval = true)
+    private String email;
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Reserva> reserva;
 }
