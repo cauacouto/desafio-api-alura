@@ -1,5 +1,6 @@
 package couto.dev.desafio.alura.domin;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import couto.dev.desafio.alura.Enum.statusReserva;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "reserva")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,15 +21,17 @@ public class Reserva implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataInicio;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataFim;
     @Enumerated(value = EnumType.STRING)
     private statusReserva status;
     @ManyToOne
-    @JoinColumn(name = "usuario_Id")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name = "sala_Id")
+    @JoinColumn(name = "sala_id")
     private Sala sala;
 
 
