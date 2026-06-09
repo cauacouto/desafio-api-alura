@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "sala")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,8 +25,10 @@ public class Sala implements Serializable {
     private boolean ativa;
     @Enumerated(EnumType.STRING)
     private StatusSala statusSala;
-    @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "sala",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Reserva> reserva;
+
+
 
 }
 
