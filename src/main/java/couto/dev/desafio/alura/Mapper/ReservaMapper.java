@@ -10,12 +10,9 @@ import org.mapstruct.Mapping;
 public interface ReservaMapper {
 
 
-  @Mapping(target = "dataInicio",source = "dataInicio")
-  @Mapping(target = "dataFim",source = "dataFim")
-  @Mapping(target = "usuario",source = "usuario.id")
-  @Mapping(target = "sala",source = "sala.id")
-  @Mapping(target = "statusReserva",source = "status")
 
+  @Mapping(target = "salaId",source = "sala.id")
+  @Mapping(target = "usuarioId",source = "usuario.id")
   ReservaResponseDto toDto(Reserva entity);
 
 

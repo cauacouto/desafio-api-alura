@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface SalaMapper {
 
 
-  @Mapping(target = "nomeSala",source = "nomeSala")
+  @Mapping(target = "salaId",source = "id")
   SalaResponseDto toDto(Sala entity);
 
 
