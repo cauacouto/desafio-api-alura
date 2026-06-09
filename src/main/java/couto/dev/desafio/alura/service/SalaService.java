@@ -20,10 +20,11 @@ public class SalaService {
         Sala sala = salaMapper.toEntity(dto);
         sala.setNomeSala(dto.nomeSala());
         sala.setStatusSala(StatusSala.ATIVA);
+        sala.setAtiva(true);
+        sala.setCapacidade(dto.capacidade());
         if (sala.getCapacidade() <= 0){
             throw new IllegalArgumentException("sala não pode possuir capacidade menor ou igual a zero.");
         }
-        sala.setCapacidade(dto.capicdade());
             var salvar = salaRepository.save(sala);
         return salaMapper.toDto(salvar);
     }
