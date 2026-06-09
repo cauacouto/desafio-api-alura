@@ -13,8 +13,8 @@ import couto.dev.desafio.alura.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -29,7 +29,17 @@ public class ReservaService {
     private static final Duration INTERVALO_MINIMO = Duration.ofMinutes(60);
 
     public ReservaResponseDto reservar(ReservaRequestDto dto, UUID usuarioId, Integer salaId) {
-        validarDatas(dto);
+
+
+
+
+        if (dto.dataInicio() == null || dto.dataFim() == null) {
+            throw new IllegalArgumentException("Datas não podem ser nulas");
+        }
+
+        if (!dto.dataInicio().isBefore(dto.dataFim())) {
+            throw new IllegalArgumentException("Data de início deve ser antes da data de fim");
+        }
 
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
@@ -53,15 +63,7 @@ public class ReservaService {
         return reservaMapper.toDto(reservaRepository.save(reserva));
     }
 
-    private void validarDatas(ReservaRequestDto dto) {
-        if (dto.dataInicio() == null || dto.dataFim() == null) {
-            throw new IllegalArgumentException("Datas não podem ser nulas");
-        }
 
-        if (!dto.dataInicio().isBefore(dto.dataFim())) {
-            throw new IllegalArgumentException("Data de início deve ser antes da data de fim");
-        }
-    }
 
     private void verificarConflitoComIntervalo(Sala sala, LocalDateTime dataInicio, LocalDateTime dataFim) {
         LocalDateTime dataInicioMenosIntervalo = dataInicio.minus(INTERVALO_MINIMO);
